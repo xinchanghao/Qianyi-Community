@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>登录 - 仟壹社区</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="/static/css/default.css">
+	<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+  	<script src='/static/js/prefixfree.min.js'></script>
+	<link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+	<link rel="shortcut icon" type="image/x-icon" href="/static/images/favicon.ico" media="screen" />
+	<!--[if IE]>
+		<script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
+	<![endif]-->
+	<script type="text/javascript">
+	  function change(){
+	        $('form').animate({
+	            opacity: 'toggle',
+	            height: 'toggle'  
+	        }, 'slow');
+	
+	  }
+	</script>
+<!-- 异步处理位置信息 -->
+
+<script type="text/javascript">
+	//页面执行调用；
+ $(window).load(function() {
+	if (navigator.geolocation) {
+	      navigator.geolocation.getCurrentPosition(showPosition, showError,{
+	   	   // 指示浏览器获取高精度的位置，默认为false
+	          enableHighAccuracy: true,
+	          // 指定获取地理位置的超时时间，默认不限时，单位为毫秒
+	          timeout: 5000,
+	          // 最长有效期，在重复获取地理位置时，此参数指定多久再次获取位置。
+	          maximumAge: 3000
+	      });
+
+	    }
+	else
+		alert("浏览器不支持地理定位")
+});
+
+function showPosition(position)
+{
+	  //经度
+	  var longitude = position.coords.longitude;
+	  //纬度
+	  var latitude = position.coords.latitude;
+	  //ajax方法发送异步请求；
+	 $.ajax({
+		 url:"/login/",
+		 async:true,
+		 cache:false,
+		 type:"POST",
+		 dataType: "json",
+		 data:{ a:longitude, b:latitude},
+		 success:function(data,status){
+			 alert("当前位置信息已获取！\n" + data + "\n状态: " +status);
+	 		}
+	 });
+}
+
+
+function showError(error)
+{
+	alert(error.message);
+	alert("您的位置未更新！");
+	switch(error.code) 
+	{
+		case error.PERMISSION_DENIED:
+			x.innerHTML="用户拒绝对获取地理位置的请求。"
+			break;
+		case error.POSITION_UNAVAILABLE:
+			x.innerHTML="位置信息是不可用的。"
+			break;
+		case error.TIMEOUT:
+			x.innerHTML="请求用户地理位置超时。"
+			break;
+		case error.UNKNOWN_ERROR:
+			x.innerHTML="未知错误。"
+			break;
+	}
+}
+
+</script>
+<style type="text/css">
+label{
+width:0px;
+height:0px;
+font-size:0px;
+z-index:-999;
+position:absolute;
+}
+p.center{
+      color: #fff;font-family: "Microsoft YaHei";
+    }
+
+#animated_div
+{
+background:linear-gradient(#004746, #000000);;
+color:#00a4a2;;
+position:relative;
+font-weight:bold;
+font-size: 10px;
+animation:animated_div 5s 1;
+animation-delay:4s;
+-moz-animation:animated_div 5s 1;
+-webkit-animation:animated_div 5s 1;
+-o-animation:animated_div 5s 1;
+border-radius:5px;
+-webkit-border-radius:5px;
+}
+
+@keyframes animated_div
+{
+0%    {transform: rotate(0deg);left:0px;font-size: 0px;}
+25%   {transform: rotate(20deg);left:0px;font-size: 0px;}
+50%   {transform: rotate(0deg);left:500px;font-size: 1px;}
+55%   {transform: rotate(0deg);left:500px;font-size: 3px}
+70%   {transform: rotate(0deg);left:500px;background:#1ec7e6;font-size: 6px;}
+100%  {transform: rotate(-360deg);left:0px;font-size: 10px;}
+}
+
+@-webkit-keyframes animated_div
+{
+0%    {-webkit-transform: rotate(0deg);left:0px;font-size: 0px;}
+25%   {-webkit-transform: rotate(20deg);left:0px;font-size: 0px;}
+50%   {-webkit-transform: rotate(0deg);left:500px;font-size: 1px;}
+55%   {-webkit-transform: rotate(0deg);left:500px;font-size: 3px;}
+70%   {-webkit-transform: rotate(0deg);left:500px;background:#1ec7e6;font-size: 6px;}
+100%  {-webkit-transform: rotate(-360deg);left:0px;font-size: 10px;}
+}
+
+@-moz-keyframes animated_div
+{
+0%   {-moz-transform: rotate(0deg);left:0px;font-size: 0px;}
+25%  {-moz-transform: rotate(20deg);left:0px;font-size: 0px;}
+50%  {-moz-transform: rotate(0deg);left:500px;font-size: 1px;}
+55%  {-moz-transform: rotate(0deg);left:500px;font-size: 3px;}
+70%  {-moz-transform: rotate(0deg);left:500px;background:#1ec7e6;font-size: 6px;}
+100% {-moz-transform: rotate(-360deg);left:0px;font-size: 10px;}
+}
+
+@-o-keyframes animated_div
+{
+0%   {transform: rotate(0deg);left:0px;font-size: 0px;}
+25%  {transform: rotate(20deg);left:0px;font-size: 0px;}
+50%  {transform: rotate(0deg);left:500px;font-size: 1px;}
+55%  {transform: rotate(0deg);left:500px;font-size: 3px;}
+70%  {transform: rotate(0deg);left:500px;background:#1ec7e6;font-size: 6px;}
+100% {transform: rotate(-360deg);left:0px;font-size: 10px;}
+}
+
+</style>
+
+</head>
+
+
+
+<body>
+<div id="logo"> 
+  <h1 class="hogo"><i> 仟&nbsp;&nbsp;壹&nbsp;&nbsp;COMMUNITY</i></h1>
+</div> 
+<section class="stark-login" class="shake_effect">
+      <div id="shakeform" class="shake_effect">
+              <form  method = 'post' action="/login/" class="login_form" style="display: block;"> 
+                  {% csrf_token %}
+                <div id="fade-box">
+                  <input type="text" name="username" id="uname" placeholder="Username" required>
+                  <input type="password" name="password" placeholder="Password" required>
+                  <button id="login" onclick='getLocation()'>Log In</button> 
+                </div>
+                <p class="message"><a href="javascript:change()" id="animated_div">立刻注册</a></p>
+              </form>
+
+
+              <form class="regist_form" action="/regist/" method = 'post' style="display: none;height: 300px;">
+                {% csrf_token %}
+                <div id="fade-box">
+                	{{form.as_p}}
+                	<!-- 
+                  <input type="text" placeholder="Username" name="username" id='username' required/>
+                  <input type="password" placeholder="Password" name="password" required/>
+                  <input type="text" placeholder="E-mail" name="emial" required/>
+                   -->
+                </div>
+                <button id="create">Log Up</button>
+                <p class="message"><a href="javascript:change()" id="animated_div">立刻登录</a></p>
+              </form>
+
+      </div>
+
+
+      <div class="hexagons">
+        <span>&#x2B22;</span>
+        <span>&#x2B22;</span>
+        <span>&#x2B22;</span>
+        <span>&#x2B22;</span>
+        <span>&#x2B22;</span>
+        <span>&#x2B22;</span>
+        <span>&#x2B22;</span>
+        <span>&#x2B22;</span>
+        <span>&#x2B22;</span>
+        <span>&#x2B22;</span>
+        <span>&#x2B22;</span>
+        <span>&#x2B22;</span>
+        <span>&#x2B22;</span>
+        <span>&#x2B22;</span>
+        <span>&#x2B22;</span>
+        <span>&#x2B22;</span>
+        <span>&#x2B22;</span>
+        <br>
+          <span>&#x2B22;</span>
+          <span>&#x2B22;</span>
+          <span>&#x2B22;</span>
+          <span>&#x2B22;</span>
+          <span>&#x2B22;</span>
+          <span>&#x2B22;</span>
+          <span>&#x2B22;</span>
+          <span>&#x2B22;</span>
+          <span>&#x2B22;</span>
+          <span>&#x2B22;</span>
+          <span>&#x2B22;</span>
+          <span>&#x2B22;</span>
+          <span>&#x2B22;</span>
+          <span>&#x2B22;</span>
+          <span>&#x2B22;</span>
+          <span>&#x2B22;</span>
+          <br>
+            <span>&#x2B22;</span>
+            <span>&#x2B22;</span>
+            <span>&#x2B22;</span>
+            <span>&#x2B22;</span> 
+            <span>&#x2B22;</span>
+            <span>&#x2B22;</span>
+            <span>&#x2B22;</span>
+            <span>&#x2B22;</span>
+            <span>&#x2B22;</span>
+            <span>&#x2B22;</span>
+            <span>&#x2B22;</span>
+            <span>&#x2B22;</span>
+            <span>&#x2B22;</span>
+            <span>&#x2B22;</span>
+            <span>&#x2B22;</span>
+            <span>&#x2B22;</span>
+            <span>&#x2B22;</span>
+            
+            <br>
+              <span>&#x2B22;</span>
+              <span>&#x2B22;</span>
+              <span>&#x2B22;</span>
+              <span>&#x2B22;</span>
+              <span>&#x2B22;</span>
+              <span>&#x2B22;</span>
+              <span>&#x2B22;</span>
+              <span>&#x2B22;</span>
+              <span>&#x2B22;</span>
+              <span>&#x2B22;</span>
+              <span>&#x2B22;</span>
+              <span>&#x2B22;</span>
+              <span>&#x2B22;</span>
+              <span>&#x2B22;</span>
+              <span>&#x2B22;</span>
+              <span>&#x2B22;</span>
+              <br>
+                <span>&#x2B22;</span>
+                <span>&#x2B22;</span>
+                <span>&#x2B22;</span>
+                <span>&#x2B22;</span>
+                <span>&#x2B22;</span>
+                <span>&#x2B22;</span>
+                <span>&#x2B22;</span>
+                <span>&#x2B22;</span>
+                <span>&#x2B22;</span>
+                <span>&#x2B22;</span>
+                <span>&#x2B22;</span>
+                <span>&#x2B22;</span>
+                <span>&#x2B22;</span>
+                <span>&#x2B22;</span>
+                <span>&#x2B22;</span>
+                <span>&#x2B22;</span>
+                <span>&#x2B22;</span>
+              </div>      
+        </section> 
+    
+        <div id="circle1">
+          <div id="inner-cirlce1">
+            <h2> </h2>
+          </div>
+        </div>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+	<header class="htmleaf-header">
+			<h1>沉稳大气，笃行克己 <span>Copyright © 2016-2050 Powered By Xin Hao</span></h1>
+
+		</header>
+</body>
+</html>
+
+

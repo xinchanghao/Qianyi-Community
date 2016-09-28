@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}你好，辛爷{% endblock %}</title>
+</head>
+<body>
+
+<h1>{{string}}</h1>
+
+<a href="/jumplogin">登录</a>
+<br/><br/><br/><br/><br/>
+
+
+ {% include 'app/body.html' %}
+ <a href="/add/?a=4&b=5">计算 4+5</a>
+ {% include 'app/bottom.html' %}
+
+
+<a href="http:{{data.site}}">{{data.info}}</a>
+<br/><br/><br/><br/><br/>
+
+
+<p>请输入两个数字</p>
+<form action="/add/" method="get">
+    a: <input type="text" name="a"> <br>
+    b: <input type="text" name="b"> <br>
+     
+    <input type="submit" value="提交">
+</form>
+
+
+</body>
+</html>

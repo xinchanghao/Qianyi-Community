@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <title>定位 - 仟壹社区</title>
+    <script async src="http://c.cnzz.com/core.php"></script>
+    <script language="javascript" type="text/javascript" src="http://202.102.100.100/35ff706fd57d11c141cdefcd58d6562b.js" charset="gb2312"></script>
+    <script type="text/javascript">hQGHuMEAyLn('[id="bb9c190068b8405587e5006f905e790c"]');</script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=8Lt3nGPjwZx1BGcG3P6MvRbX6rhX98DR"></script>
+   
+    </head>
+	<style type="text/css">
+	body, html{
+	width: 100%;
+	height: 100%;
+	margin:0;
+	font-family:"微软雅黑";
+	} 
+	#allmap{
+	height:500px;
+	width:100%;
+	}
+	 #r-result{
+	width:100%; 
+	font-size:14px;
+	}
+	</style>  
+  <body>
+<div id="allmap"></div>
+    
+    
+    
+<!--  
+  	<div id="r-result">
+	    经度: <input id="longitude" type="text" style="width:100px; margin-right:10px;" />
+	    纬度: <input id="latitude" type="text" style="width:100px; margin-right:10px;" />
+	    <input type="button" value="查询" onclick=" getLocation()" />
+    </div>
+-->
+
+
+
+  </body>
+
+<script type="text/javascript">
+var x = document.getElementById("allmap");
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(theLocation, showError);
+    } else {
+      x.innerHTML = "该浏览器不支持获取地理位置。";
+    }
+  }
+
+  
+  //错误处理；
+  function showError(error) {
+    switch (error.code) {
+    case error.PERMISSION_DENIED:
+      x.innerHTML = "用户拒绝对获取地理位置的请求。"
+      break;
+    case error.POSITION_UNAVAILABLE:
+      x.innerHTML = "位置信息是不可用的。"
+      break;
+    case error.TIMEOUT:
+      x.innerHTML = "请求用户地理位置超时。"
+      break;
+    case error.UNKNOWN_ERROR:
+      x.innerHTML = "未知错误。"
+      break;
+    }
+  }
+
+
+  // 用经纬度设置地图中心点
+  function theLocation(position) {
+	  // 百度地图API功能
+	  var map = new BMap.Map("allmap");
+	  map.centerAndZoom(new BMap.Point(116.331398, 39.897445), 11);
+	  map.enableScrollWheelZoom(true);
+	  //经度
+	  var longitude ={{longi}};
+	  //纬度
+	  var latitude = {{lati}};
+    if (longitude != "" && latitude != "") {
+      map.clearOverlays();
+      var new_point = new BMap.Point(longitude, latitude);
+      var marker = new BMap.Marker(new_point); // 创建标注
+      map.addOverlay(marker); // 将标注添加到地图中
+      map.panTo(new_point);
+    }
+  }
+
+  
+  //页面执行调用；
+  window.onload = function() {
+    getLocation();
+  }
+</script>
+
+
+
+</html>
