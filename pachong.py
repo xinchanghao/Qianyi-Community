@@ -3,16 +3,16 @@
 @author: Xinhao
 
 '''
-from urllib.request import Request # 寮曞叆urlrequest 妯″潡
+from urllib.request import Request # 瀵洖鍙唘rlrequest 濡�虫健
 from urllib.request import urlopen
 from bs4 import BeautifulSoup as bs
 import re
-from urllib import parse # 寮曞叆parse 妯″潡
+from urllib import parse # 瀵洖鍙唒arse 濡�虫健
 import pymysql.cursors
 
 
 
-	req = Request("http://www.thsrc.com.tw/tw/TimeTable/SearchResult")
+req = Request("http://www.thsrc.com.tw/tw/TimeTable/SearchResult")
 
 postDate = parse.urlencode([
 ("StartStation", "2f940836-cedc-41ef-8e28-c2336ac8fe68"),
@@ -30,16 +30,15 @@ req.add_header("User-Agent", "Mozilla/5.0 (Windows NT 6.1; rv:48.0) Gecko/201001
 resp = urlopen(req).read().decode('utf-8')
 soup = bs(resp,"html.parser")
 listUrls = soup.findAll("a", class_="f14 list-info-title")
-for a in listUrls:
-	{    
-		print(a['href'],"<-->""http://localhost/",a['href'])
-
-    }
-
+for a in listUrls:{    
+	print(a['href'],"<-->""http://localhost/",a['href'])
+	
+	}
 
 
 
-#鑾峰彇鏁版嵁搴撹繛鎺�
+
+#閼惧嘲褰囬弫鐗堝祦鎼存捁绻涢幒锟�
 
 
 connection = pymysql.connection(
@@ -54,15 +53,15 @@ connection = pymysql.connection(
 
 
 try:
-	#鑾峰彇浼氳瘽鎸囬拡
+	#閼惧嘲褰囨导姘崇樈閹稿洭鎷�
 	with connection.cursor() as cursor
-	#鍒涘缓sql璇彞
+	#閸掓稑缂搒ql鐠囶厼褰�
 	sql=insert into `list`(`urlname`,`urlhref`) value(%s,%s)
 
-	#鎵цsql
+	#閹笛嗩攽sql
 	cursor.execute(sql,(a.string,"http://localhost/"+a['href'])
-	#鎻愪氦
+	#閹绘劒姘�
 	connection.commit()	
 finally:
-	#鍏抽棴鏁版嵁搴�
+	#閸忔娊妫撮弫鐗堝祦鎼达拷
 	connection.close()

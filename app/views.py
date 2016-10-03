@@ -97,7 +97,7 @@ def delregist(request):
 
 
 
-        
+#处理登出     
 def logout(request):
     try:
         del request.session['has_login']
@@ -110,6 +110,8 @@ def delmap(request,longi,lati):
 	#return HttpResponse(longi);
 	return render(request,'app/map.html',{"longi":longi,"lati":lati})   #render 是渲染模板；
 
+
+#处理地图
 def postmap(request):
 
 	if request.method == 'POST':
@@ -118,3 +120,8 @@ def postmap(request):
 		username= request.POST['name']
 		request.session['has_map'] =True
 	return HttpResponse(a) #客户端发来的数据
+
+
+#个人主页
+def detail(request):
+	return render(request,'app/detail.html')   #render 是渲染模板；
