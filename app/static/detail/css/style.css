@@ -6,7 +6,7 @@
 /* Basic */
 
 	body {
-		background: #fff;
+		background: #111;
 	}
 
 	body, input, select, textarea {
@@ -15,6 +15,7 @@
 		font-size: 16pt;
 		font-weight: 400;
 		line-height: 1.75em;
+		background-color: #111111;
 	}
 
 	a {
@@ -1014,14 +1015,14 @@
 /* Wrapper */
 
 	#wrapper {
-		background: #fff;
+		background: #272727;
 		padding-right: 23em;
 	}
 
 /* Main */
 
 	#main > section {
-		border-top: solid 6px #f4f4f4;
+		border-top: solid 6px #4acaa8;
 	}
 
 		#main > section > .container {
@@ -1048,9 +1049,9 @@
 /* Footer */
 
 	#footer {
-		background: #fafafa;
+		background: #4acaa8;
 		border-top: 0;
-		color: #c0c0c0;
+		color: #FFF;
 		overflow: hidden;
 		padding: 4em 0 2em 0;
 	}

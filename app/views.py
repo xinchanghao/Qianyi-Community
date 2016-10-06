@@ -124,4 +124,9 @@ def postmap(request):
 
 #个人主页
 def detail(request):
-	return render(request,'app/detail.html')   #render 是渲染模板；
+	if request.session.get('has_login',False):
+		return render(request,'app/detail.html')   #render 是渲染模板；
+	else:
+		return render(request,'app/login.html')   #render 是渲染模板；
+
+	
