@@ -125,7 +125,10 @@ def postmap(request):
 #个人主页
 def detail(request):
 	if request.session.get('has_login',False):
-		return render(request,'app/detail.html')   #render 是渲染模板；
+		username=request.session['username']
+		return HttpResponse(username) #客户端发来的数据
+
+# 		return render_(request,'app/detail.html',{'username':username})   #render 是渲染模板；
 	else:
 		return render(request,'app/login.html')   #render 是渲染模板；
 
