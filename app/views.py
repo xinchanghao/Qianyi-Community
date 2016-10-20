@@ -6,8 +6,7 @@ from django import forms
 from app.models import User
 from django.views.decorators.csrf import csrf_exempt
 from django.core.urlresolvers import reverse
-	
-	
+from django.core.mail import send_mail  	
 #测试首页
 # def index(request):
 # 	string = u"辛爷，你好，好好学习Python!"
@@ -30,7 +29,7 @@ def index(request):
 class UserForm(forms.Form): 
     username = forms.CharField(initial='Username',widget=forms.TextInput(),max_length=100)
     password = forms.CharField(initial='Password',widget=forms.PasswordInput(),max_length=30)
-    email = forms.CharField(initial='E-mail@',widget=forms.EmailInput(),max_length=30)
+    email = forms.CharField(initial='E-mail',widget=forms.EmailInput(),max_length=30)
     
     
 #处理登录
@@ -103,13 +102,17 @@ def logout(request):
         del request.session['has_login']
     except KeyError:
         pass
-    return HttpResponse("You're logged out.")
+    return render(request,'app/error.html',{"error":'You are logging out!您已退出'}) 
    
    
 def delmap(request,longi,lati):
 	#return HttpResponse(longi);
 	return render(request,'app/map.html',{"longi":longi,"lati":lati})   #render 是渲染模板；
 
+
+#error404提示页
+def error(request):
+	return render(request,'app/error.html')   #render 是渲染模板；
 
 #处理地图
 def postmap(request):
@@ -125,11 +128,41 @@ def postmap(request):
 #个人主页
 def detail(request):
 	if request.session.get('has_login',False):
-		username=request.session['username']
-		#return HttpResponse(username) #客户端发来的数据
-
-		return render(request,'app/detail.html',{'username':username})   #render 是渲染模板；
+		user=request.session['username']
+		try:
+			users= User.objects.get(user_name= user)
+			return render(request,'app/detail.html',{'users':users})   #render 是渲染模板；
+		except BaseException:
+			return render(request,'app/error.html',{"error":'The page you are looking for is not here or moved.'}) 
 	else:
 		return render(request,'app/login.html')   #render 是渲染模板；
+
+#用户主页
+def detail_other(request,user,longi,lati):
+	if request.session.get('has_login',False):
+		try:
+			users= User.objects.get(user_name= user)
+			return render(request,'app/detail.html',{'users':users})
+		except BaseException:
+			return render(request,'app/error.html',{"error":'The page you are looking for is not here or moved.'}) 
+	else:
+		return render(request,'app/login.html')   #render 是渲染模板；
+
+#发送邮件
+def sendmsg(request):
+	if request.method=='POST':
+		try:
+			name=request.POST['report_user']
+			email=request.POST['your_email']
+			subject=request.POST['subject']
+			message=request.POST['message']
+			send_mail(subject, message,'hao_fjnu@163.com',['1433405285@qq.com'],fail_silently=False)  
+			return HttpResponse("发送邮件成功！")
+		except BaseException:
+# 			return render(request,'app/error.html',{"error":'发送邮件失败！'}) 
+			pass
+	else:
+		return HttpResponse("发送邮件失败1")
+	return HttpResponse("发送邮件失败2")
 
 	

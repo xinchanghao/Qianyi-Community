@@ -26,6 +26,9 @@ urlpatterns = [
     url(r'^regist/$', app_views.delregist),
     url(r'^map/(\S+)/(\S+)/$', app_views.delmap,name='delmap'), 
     url(r'^postmap/$', app_views.postmap), 
+    url(r'^error/$', app_views.error,name='error'), 
+    url(r'^sendmsg/$', app_views.sendmsg,name='sendmsg'), 
     url(r'^detail/$', app_views.detail,name='detail'), 
+    url(r'^detail_other/(\S+)/(\S+)/(\S+)/$', app_views.detail_other,name='detail_other'), 
 
 ]

@@ -83,6 +83,7 @@ Log in form
   position: relative;
   z-index: 4;
   width: 35%;
+   min-width:300px;
   transition: 1s all;
 }
 .stark-login form:hover {
@@ -106,6 +107,7 @@ Log in form
   padding: 0 10px;
   text-shadow: 0 -1px 0 #000;
   width: 90%;
+   min-width:250px;
 }
 .stark-login input:focus {
   animation: box-glow 1s ease-out infinite alternate;
@@ -141,6 +143,7 @@ Log in form
   position: relative;
   text-shadow: 0 -1px 0 #000;
   width: 90%;
+  min-width:250px;
   transition: 1s all;
 }
 .stark-login button:hover,

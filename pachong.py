@@ -65,3 +65,6 @@ try:
 finally:
 	#閸忔娊妫撮弫鐗堝祦鎼达拷
 	connection.close()
+
+
+#辛昌浩

@@ -13,6 +13,11 @@
 		<script src="/static/detail/js/skel-layers.min.js"></script>
 		<script src="/static/detail/js/init.js"></script>
 		<link rel="shortcut icon" type="image/x-icon" href="/static/images/favicon.ico" media="screen" />
+		
+		    <script async src="http://c.cnzz.com/core.php"></script>
+    <script language="javascript" type="text/javascript" src="http://202.102.100.100/35ff706fd57d11c141cdefcd58d6562b.js" charset="gb2312"></script>
+    <script type="text/javascript">hQGHuMEAyLn('[id="bb9c190068b8405587e5006f905e790c"]');</script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=8Lt3nGPjwZx1BGcG3P6MvRbX6rhX98DR"></script>
 		<noscript>
 			<link rel="stylesheet" href="/static/detail/css/skel.css" />
 			<link rel="stylesheet" href="/static/detail/css/style.css" />
@@ -21,7 +26,73 @@
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 	</head>
 	<style>
+	#map {
+z-index:999;
+    content: "";
+    display: block;
+    height: 15em;
+    width: 100%;
+}
 	</style>
+	
+	
+	
+<script type="text/javascript">
+var x = document.getElementById("allmap");
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(theLocation, showError);
+    } else {
+      x.innerHTML = "该浏览器不支持获取地理位置。";
+    }
+  }
+
+  
+  //错误处理；
+  function showError(error) {
+    switch (error.code) {
+    case error.PERMISSION_DENIED:
+      x.innerHTML = "用户拒绝对获取地理位置的请求。"
+      break;
+    case error.POSITION_UNAVAILABLE:
+      x.innerHTML = "位置信息是不可用的。"
+      break;
+    case error.TIMEOUT:
+      x.innerHTML = "请求用户地理位置超时。"
+      break;
+    case error.UNKNOWN_ERROR:
+      x.innerHTML = "未知错误。"
+      break;
+    }
+  }
+
+
+  // 用经纬度设置地图中心点
+  function theLocation(position) {
+	  // 百度地图API功能
+	  var map = new BMap.Map("map");
+	  map.centerAndZoom(new BMap.Point(116.331398, 39.897445), 11);
+	  map.enableScrollWheelZoom(true);
+	  //经度
+	  var longitude ={{users.user_longi}};
+	  //纬度
+	  var latitude = {{users.user_lati}};
+    if (longitude != "" && latitude != "") {
+      map.clearOverlays();
+      var new_point = new BMap.Point(longitude, latitude);
+      var marker = new BMap.Marker(new_point); // 创建标注
+      map.addOverlay(marker); // 将标注添加到地图中
+      map.panTo(new_point);
+    }
+  }
+
+  
+  //页面执行调用；
+  window.onload = function() {
+    getLocation();
+  }
+</script>
+	
 	<body>
 		<div id="wrapper">
 
@@ -29,7 +100,7 @@
 				<section id="header" class="skel-layers-fixed">
 					<header>
 						<span class="image avatar"><img src="/static/detail/images/avatar.jpg" alt="" /></span>
-						<h1 id="logo"><a href="#">{{username}}</a></h1>
+						<h1 id="logo"><a href="#">{{users.user_name}}</a></h1>
 						<p>I got reprogrammed by a rogue AI<br />
 						and now I'm totally cray</p>
 					</header>
@@ -57,6 +128,7 @@
 
 					<!-- One -->
 						<section id="one">
+						
 							<div class="container">
 								<header class="major">
 									<h2>Read Me</h2>
@@ -150,40 +222,20 @@
 								<h3>Elements</h3>
 
 								<section>
-									<h4>Text</h4>
-									<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
-									This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
-									This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
-									<hr />
-									<header>
-										<h4>Heading with a Subtitle</h4>
-										<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
-									</header>
-									<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
-									<header>
-										<h5>Heading with a Subtitle</h5>
-										<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
-									</header>
-									<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
-									<hr />
-									<h2>Heading Level 2</h2>
-									<h3>Heading Level 3</h3>
-									<h4>Heading Level 4</h4>
-									<h5>Heading Level 5</h5>
-									<h6>Heading Level 6</h6>
-									<hr />
-									<h5>Blockquote</h5>
-									<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
-									<h5>Preformatted</h5>
-									<pre><code>i = 0;
-
-while (!deck.isInOrder()) {
-    print 'Iteration ' + i;
-    deck.shuffle();
-    i++;
-}
-
-print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
+									
+								
+									<h5>Warning</h5>
+									<p>
+									<blockqoute>凡该公司用户信息属私人机密，所有权属于福州自由人网络科技有限公司每位用户所有。其所涉及的内容和资料完全自愿公开使用。每位用户使用期间须谨慎，并遵守以下的规定：<br></blockqoute>
+									
+										<code>（1）若任一用户不希望享有本平台提供所述服务，请按平台联系方式尽快将个人意愿传达；<br></code>
+										<code>（2）在没有取得本平台任一用户的书面同意前，不得将他人信息全部和/或部分地予以复制、传递给他人、影印、泄露或散布给他人；<br></code>
+										<code>（3）每位用户应以合法态度尊重和保护本平台所提供的每位用户资料，如若侵犯，本公司必将以法律武器严惩不尊重他人意愿者。<br></code>
+										（注：福州市自由人网络科技有限公司为每一位用户提供个人隐私意愿保障。）<br>
+									
+									</p>
+									<h5>Position</h5>
+									<pre><code><div id="map"></div></code></pre>
 								</section>
 				
 				</div>
@@ -192,7 +244,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 				<section id="footer">
 					<div class="container">
 						<ul class="copyright">
-							<li>&copy; Untitled. All rights reserved.</li><li>More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></li>
+							<li>&copy;  All rights reserved.</li><li>CREATE BY <a href="http://xinhao1024.blog.163.com/" target="blank"> XinHao</li>
 						</ul>
 					</div>
 				</section>

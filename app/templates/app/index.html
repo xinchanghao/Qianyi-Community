@@ -265,7 +265,7 @@ $('.am-slider').flexslider({
 						<label> </label>
 						<p>{{users.user_descripe}}</p>
 						<div class="p-btn">
-							<a href="#">VIEW PROJECT</a>
+							<a href="/detail_other/{{users.user_name}}/{{users.user_longi}}/{{users.user_lati}}/">VIEW PROJECT</a>
 						</div>
 					</div>
 				</div>	
@@ -562,11 +562,11 @@ $('.am-slider').flexslider({
 				<div class="touch-top">
 					<div class="col-md-6 touch-left">
 						<p>DROP US A LINE</p>
-						<form>
-							<input type="text" class="active" placeholder="User Name" required="">
-							<input type="text" placeholder="Email" required="">
-							<input type="text" placeholder="Subject" required="">
-							<textarea placeholder="Message" required=""></textarea>
+						<form action="/sendmsg/" method="POST">
+							<input type="text" class="active" placeholder="Report Name" name="report_user" required="">
+							<input type="text" placeholder="Your Email" required="" name="your_email">
+							<input type="text" placeholder="Subject" required="" name="subject">
+							<textarea placeholder="Message" required="" name="message"></textarea>
 							<div class="sub-button">
 								<input type="submit" value="SEND IT">
 							</div>
@@ -599,7 +599,7 @@ $('.am-slider').flexslider({
 	<div class="footer">
 		<div class="container">
 			<div class="footer-text">
-				<p>CREATE BY <a href="http://w3layouts.com/"> XinHao</a></p>
+				<p>CREATE BY <a href="http://xinhao1024.blog.163.com/" target="blank"> XinHao</a></p>
 			</div>
 		</div>
 		 <script type="text/javascript">
