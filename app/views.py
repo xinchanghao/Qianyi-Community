@@ -131,7 +131,7 @@ def detail(request):
 		user=request.session['username']
 		try:
 			users= User.objects.get(user_name= user)
-			return render(request,'app/detail.html',{'users':users})   #render 是渲染模板；
+			return render(request,'app/self.html',{'users':users})   #render 是渲染模板；
 		except BaseException:
 			return render(request,'app/error.html',{"error":'The page you are looking for is not here or moved.'}) 
 	else:
@@ -142,6 +142,7 @@ def detail_other(request,user,longi,lati):
 	if request.session.get('has_login',False):
 		try:
 			users= User.objects.get(user_name= user)
+# 			return HttpResponse(users.user_sign)
 			return render(request,'app/detail.html',{'users':users})
 		except BaseException:
 			return render(request,'app/error.html',{"error":'The page you are looking for is not here or moved.'}) 
@@ -150,19 +151,12 @@ def detail_other(request,user,longi,lati):
 
 #发送邮件
 def sendmsg(request):
-	if request.method=='POST':
-		try:
-			name=request.POST['report_user']
-			email=request.POST['your_email']
-			subject=request.POST['subject']
-			message=request.POST['message']
-			send_mail(subject, message,'hao_fjnu@163.com',['1433405285@qq.com'],fail_silently=False)  
-			return HttpResponse("发送邮件成功！")
-		except BaseException:
-# 			return render(request,'app/error.html',{"error":'发送邮件失败！'}) 
-			pass
-	else:
-		return HttpResponse("发送邮件失败1")
-	return HttpResponse("发送邮件失败2")
+	name=request.POST['report_user']
+	email=request.POST['your_email']
+	subject=request.POST['subject']
+	message=request.POST['message']
+	send_mail(subject, message,'hao_fjnu@163.com',['hao_fjnu@163.com'],fail_silently=False)  
+	return HttpResponse("发送邮件成功！")
+
 
 	

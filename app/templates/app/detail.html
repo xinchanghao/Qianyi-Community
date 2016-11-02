@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>个人主页  - 仟壹社区</title>
+		<title>{{users.user_name}}的主页  - 仟壹社区</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -132,9 +132,9 @@ var x = document.getElementById("allmap");
 							<div class="container">
 								<header class="major">
 									<h2>Read Me</h2>
-									<p>今夜无人入眠测试个人签名<a href="http://html5up.net">&nbsp;辛昌浩&nbsp;</a>.</p>
+									<p>{{users.user_sign}}<a href="#">&nbsp;.{{users.user_name}}&nbsp;</a></p>
 								</header>
-								<p>1994年8月生，风流倜傥，英姿飒爽，测试个人描述。曾毕业于麻省理工学院计算机系，现任于百度开发部中心等。测试个人描述。曾毕业于麻省理工学院计算机系，现任于百度开发部中心等。测试个人描述。曾毕业于麻省理工学院计算机系，现任于百度开发部中心等。测试个人描述。曾毕业于麻省理工学院计算机系，现任于百度开发部中心等。</p>
+								<p>{{users.user_intro}}</p>
 							</div>
 						</section>
 						
@@ -187,33 +187,7 @@ var x = document.getElementById("allmap");
 							</div>
 						</section>
 						
-					<!-- Four -->
-						<section id="four">
-							<div class="container">
-								<h3>Modify information</h3>
-								<p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum integer. Integer eu ante ornare amet commetus.</p>
-								<form method="post" action="#">
-									<div class="row uniform">
-										<div class="6u 12u(3)"><input type="text" name="name" id="name" placeholder="Name" /></div>
-										<div class="6u 12u(3)"><input type="email" name="email" id="email" placeholder="Email" /></div>
-									</div>
-									<div class="row uniform">
-										<div class="12u"><input type="text" name="subject" id="subject" placeholder="Subject" /></div>
-									</div>
-									<div class="row uniform">
-										<div class="12u"><textarea name="message" id="message" placeholder="Message" rows="6"></textarea></div>
-									</div>
-									<div class="row uniform">
-										<div class="12u">
-											<ul class="actions">
-												<li><input type="submit" class="special" value="Send Message" /></li>
-												<li><input type="reset" value="Reset Form" /></li>
-											</ul>
-										</div>
-									</div>
-								</form>
-							</div>
-						</section>
+						
 				
 					<!-- Five -->
 					
@@ -226,12 +200,12 @@ var x = document.getElementById("allmap");
 								
 									<h5>Warning</h5>
 									<p>
-									<blockqoute>凡该公司用户信息属私人机密，所有权属于福州自由人网络科技有限公司每位用户所有。其所涉及的内容和资料完全自愿公开使用。每位用户使用期间须谨慎，并遵守以下的规定：<br></blockqoute>
+									<blockqoute>凡该公司用户信息属私人机密，所有权属于福州自由人网络科技有限公司每位用户所有。其所涉及的内容和资料完全自愿公开使用。每位用户使用期间须谨慎，并遵守以下的规定：</br></blockqoute>
 									
-										<code>（1）若任一用户不希望享有本平台提供所述服务，请按平台联系方式尽快将个人意愿传达；<br></code>
-										<code>（2）在没有取得本平台任一用户的书面同意前，不得将他人信息全部和/或部分地予以复制、传递给他人、影印、泄露或散布给他人；<br></code>
-										<code>（3）每位用户应以合法态度尊重和保护本平台所提供的每位用户资料，如若侵犯，本公司必将以法律武器严惩不尊重他人意愿者。<br></code>
-										（注：福州市自由人网络科技有限公司为每一位用户提供个人隐私意愿保障。）<br>
+										（1）若任一用户不希望享有本平台提供所述服务，请按平台联系方式尽快将个人意愿传达；</br>
+										（2）在没有取得本平台任一用户的书面同意前，不得将他人信息全部和/或部分地予以复制、传递给他人、影印、泄露或散布给他人；</br>
+										（3）每位用户应以合法态度尊重和保护本平台所提供的每位用户资料，如若侵犯，本公司必将以法律武器严惩不尊重他人意愿者。</br>
+										（注：福州市自由人网络科技有限公司为每一位用户提供个人隐私意愿保障。）</br>
 									
 									</p>
 									<h5>Position</h5>

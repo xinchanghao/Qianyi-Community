@@ -51,6 +51,9 @@ class User(models.Model):
 	user_sex =models.TextField(u'鎬у埆',max_length=5,null=True)
 	user_addr =models.CharField(u'绠�浠�',max_length=256,null=True)
 	user_birth =models.DateTimeField(u'鍑虹敓骞存湀',editable=True,null=True,auto_now_add=True)
+	user_sign=models.CharField(u'签名',max_length=256,null=True)
+	user_intro=models.CharField(u'介绍',max_length=512,null=True)
+
 	#update_time =models.DateTimeField(u'鏇存柊鏃堕棿',auto_now=True,null=True)
 
 	def __str__(self):
