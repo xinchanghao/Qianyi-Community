@@ -149,7 +149,7 @@ def detail_other(request,user,longi,lati):
 	else:
 		return render(request,'app/login.html')   #render 是渲染模板；
 
-#发送邮件
+#发送举报邮件
 def sendmsg(request):
 	name=request.POST['report_user']
 	email=request.POST['your_email']
@@ -159,4 +159,18 @@ def sendmsg(request):
 	return HttpResponse("发送邮件成功！")
 
 
+#修改个人资料
+def modify(request):
+	if  request.is_ajax():
+		username=request.session['username']
+		email = request.POST['email']
+		sex = request.POST['sex']
+		add = request.POST['add']
+		password = request.POST['password']
+		sign = request.POST['sign']
+		message = request.POST['message']
+		User.objects.filter(user_name= username).update(user_email=email,user_sex=sex,user_addr=add,user_password=password,user_sign=sign,user_intro=message)
+		return HttpResponse(username)
+	return render(request,'app/error.html',{"error":'数据库操作失败！'})
+	
 	
