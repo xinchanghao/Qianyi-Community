@@ -22,6 +22,7 @@
 			<link rel="stylesheet" href="/static/detail/css/skel.css" />
 			<link rel="stylesheet" href="/static/detail/css/style.css" />
 			<link rel="stylesheet" href="/static/detail/css/style-xlarge.css" />
+
 		</noscript>
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 	</head>
@@ -101,8 +102,7 @@ var x = document.getElementById("allmap");
 					<header>
 						<span class="image avatar"><img src="/static/detail/images/avatar.jpg" alt="" /></span>
 						<h1 id="logo"><a href="#">{{users.user_name}}</a></h1>
-						<p>I got reprogrammed by a rogue AI<br />
-						and now I'm totally cray</p>
+						<p>{{users.user_sex}}  {{users.user_addr}}</p>
 					</header>
 					<nav id="nav">
 						<ul>
@@ -132,7 +132,7 @@ var x = document.getElementById("allmap");
 							<div class="container">
 								<header class="major">
 									<h2>Read Me</h2>
-									<p>{{users.user_sign}}<a href="#">&nbsp;.{{users.user_name}}&nbsp;</a></p>
+									<p>{{users.user_sign}}</p>
 								</header>
 								<p>{{users.user_intro}}</p>
 							</div>

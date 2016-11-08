@@ -82,8 +82,9 @@ def delregist(request):
             	else:
             		User.objects.create(user_name= username,user_password=password,user_email=email)
             		request.session['has_login'] =True	
+            		request.session['username']=username
             		HttpResponse('regist success!!')
-            		response = HttpResponseRedirect('/login/')
+            		response = HttpResponseRedirect('/index/')
             		return response
             else:
             	return HttpResponse('regist failed!!')
@@ -135,7 +136,7 @@ def detail(request):
 		except BaseException:
 			return render(request,'app/error.html',{"error":'The page you are looking for is not here or moved.'}) 
 	else:
-		return render(request,'app/login.html')   #render 是渲染模板；
+		return render(request,'app/login.html',{'form':uf})   #render 是渲染模板；
 
 #用户主页
 def detail_other(request,user,longi,lati):

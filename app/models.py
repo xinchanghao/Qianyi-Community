@@ -43,7 +43,7 @@ class User(models.Model):
 	user_name =models.CharField(u'濮撳悕',max_length=256)
 	user_longi =models.CharField(u'经度',max_length=25,null=True)
 	user_lati =models.CharField(u'纬度',max_length=25,null=True)
-	user_forbid = models.NullBooleanField(u'是否黑名单',null=True)
+	user_forbid = models.NullBooleanField(u'是否黑名单',null=True,default="0")
 	user_photo= models.CharField(u'头像',max_length=256,null=True)
 	user_descripe= models.CharField(u'描述',max_length=256,null=True)
 	user_password =models.CharField(u'瀵嗙爜',max_length=16)
