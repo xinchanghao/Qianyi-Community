@@ -1,0 +1,355 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>我的主页  - 仟壹社区</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+		<script src="/static/self/js/jquery.min.js"></script>
+		<script src="/static/self/js/jquery.scrollzer.min.js"></script>
+		<script src="/static/self/js/jquery.scrolly.min.js"></script>
+		<script src="/static/self/js/skel.min.js"></script>
+		<script src="/static/self/js/skel-layers.min.js"></script>
+		<script src="/static/self/js/init.js"></script>
+		<link rel="shortcut icon" type="image/x-icon" href="/static/images/favicon.ico" media="screen" />
+		<script async src="http://c.cnzz.com/core.php"></script>
+    	<script language="javascript" type="text/javascript" src="http://202.102.100.100/35ff706fd57d11c141cdefcd58d6562b.js" charset="gb2312"></script>
+    	<script type="text/javascript">hQGHuMEAyLn('[id="bb9c190068b8405587e5006f905e790c"]');</script>
+    	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=8Lt3nGPjwZx1BGcG3P6MvRbX6rhX98DR"></script>
+			<link rel="stylesheet" href="/static/self/css/skel.css" />
+			<link rel="stylesheet" href="/static/self/css/style.css" />
+			<link rel="stylesheet" href="/static/self/css/style-xlarge.css" />
+			<link rel="stylesheet" type="text/css" href="/static/css/normalize.css" />
+			<link rel="stylesheet" type="text/css" href="/static/css/htmleaf-demo.css">
+			<link rel="stylesheet" type="text/css" href="/static/css/zeroModal.css" />
+			<link rel="stylesheet" type="text/css" href="/static/self/css/task.css" />
+			
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+	</head>
+	<style>
+	#map {
+z-index:999;
+    content: "";
+    display: block;
+    height: 15em;
+    width: 100%;
+}
+	#main > section {
+		border-top: solid 6px #4acaa8;
+	}
+
+		#main > section > .container {
+			padding: 6em 0 4em 0;
+		}
+
+		#main > section:first-child {
+			border-top: 0;
+		}
+	</style>
+	
+	
+	
+<script type="text/javascript">
+var x = document.getElementById("allmap");
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(theLocation, showError);
+    } else {
+      x.innerHTML = "该浏览器不支持获取地理位置。";
+    }
+  }
+
+  
+  //错误处理；
+  function showError(error) {
+    switch (error.code) {
+    case error.PERMISSION_DENIED:
+      x.innerHTML = "用户拒绝对获取地理位置的请求。"
+      break;
+    case error.POSITION_UNAVAILABLE:
+      x.innerHTML = "位置信息是不可用的。"
+      break;
+    case error.TIMEOUT:
+      x.innerHTML = "请求用户地理位置超时。"
+      break;
+    case error.UNKNOWN_ERROR:
+      x.innerHTML = "未知错误。"
+      break;
+    }
+  }
+
+
+  // 用经纬度设置地图中心点
+  function theLocation(position) {
+	  // 百度地图API功能
+	  var map = new BMap.Map("map");
+	  map.centerAndZoom(new BMap.Point(116.331398, 39.897445), 11);
+	  map.enableScrollWheelZoom(true);
+	  //经度
+	  var longitude ={{users.user_longi}};
+	  //纬度
+	  var latitude = {{users.user_lati}};
+    if (longitude != "" && latitude != "") {
+      map.clearOverlays();
+      var new_point = new BMap.Point(longitude, latitude);
+      var marker = new BMap.Marker(new_point); // 创建标注
+      map.addOverlay(marker); // 将标注添加到地图中
+      map.panTo(new_point);
+    }
+  }
+
+  
+  //页面执行调用；
+  window.onload = function() {
+    getLocation();
+  }
+</script>
+	
+	<body>
+		<div id="wrapper">
+
+			<!-- Header -->
+				<section id="header" class="skel-layers-fixed">
+					<header>
+						<span class="image avatar"><img src="/static/detail/images/avatar.jpg" alt="" /></span>
+						<h1 id="logo"><a href="#">{{users.user_name}}</a></h1>
+						<p>{{users.user_sex}}  {{users.user_addr}}</p>
+					</header>
+					<nav id="nav">
+						<ul>
+							<li><a href="#one" class="active">Read Me</a></li>
+							<li><a href="#two">Things I Like</a></li>
+							<li><a href="#three">A Few Accomplishments</a></li>
+							<li><a href="#four">Modify information</a></li>
+							<li><a href="#five">Warning Message</a></li>
+							
+						</ul>
+					</nav>
+				</section>
+
+			<!-- Main -->
+				<div id="main" style="position:relative;">
+				
+				<!-- banner-top strat -->
+						<div class="banner-top">
+							<div class="banner-bottom">
+
+									<div class="bnr-right">
+										<input class="date" id="datepicker" type="text" placeholder="任务开始时期" value="" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '';}" required=>
+									</div>
+
+									<div class="bnr-right">
+										<input class="date" id="datepicker1" type="text" placeholder="任务结束时期" value="" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '';}" required=>
+									</div>
+
+									<div class="bnr-right">
+										<input class="date" id="datepicker2" type="text" placeholder="最大参与人数" value="" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '';}" required=>
+									</div>
+									<div class="bnr-right">
+										<select>
+											<option value="volvo">选择活动类型</option>
+											<option value="saab">Single</option>
+											<option value="opel">Double</option>
+											<option value="opel">交友</option>
+											<option value="opel">运动</option>
+											<option value="opel">出游</option>
+											<option value="opel">聚会</option>
+											<option value="opel">约会</option>
+											<option value="opel">社团</option>
+											<option value="audi">No Limit</option>
+										</select>
+									</div>
+									
+									<div class="bnr-left">
+										<textarea name="message" id="message" placeholder="发布个人任务" rows="6"></textarea>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+								<div class="bnr-btn">
+									<form>
+										<input type="submit" class="book" value="Book Now">
+									</form>
+								</div>
+							</div>
+						</div>
+			<!-- banner-top end -->
+			
+					<!-- One -->
+						<section id="one">
+							<div class="container" style="padding: 6em 0 4em 0;">
+								<header class="major">
+									<h2>Read Me</h2>
+									<p>{{users.user_sign}}</p>
+								</header>
+								<p>{{users.user_intro}}</p>
+							</div>
+							
+							
+							
+							
+						</section>
+						
+					<!-- Two -->
+						<section id="two" style="border-top: solid 6px #4acaa8;">
+							<div class="container" style="padding: 6em 0 4em 0;">
+								<h3>What I Think</h3>
+								<p>{{users.user_descripe}}</p>
+								<ul class="feature-icons">
+									<li class="fa-code">Write all the code</li>
+									<li class="fa-cubes">Stack small boxes</li>
+									<li class="fa-book">Read books and stuff</li>
+									<li class="fa-coffee">Drink much coffee</li>
+									<li class="fa-bolt">Lightning bolt</li>
+									<li class="fa-users">Shadow clone technique</li>
+								</ul>
+							</div>
+						</section>
+                        
+                        <div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >企业网站模板</a></div>
+						
+					<!-- Three -->
+						<section id="three" style="border-top: solid 6px #4acaa8;">
+							<div class="container" style="padding: 6em 0 4em 0;">
+								<h3>A Few Accomplishments</h3>
+								<p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum integer. Integer eu ante ornare amet commetus.</p>
+								<div class="features">
+									<article>
+										<a href="#" class="image"><img src="/static/detail/images/pic01.jpg" alt="" /></a>
+										<div class="inner">
+											<h4>Possibly broke spacetime</h4>
+											<p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer adipiscing ornare amet.</p>
+										</div>
+									</article>
+									<article>
+										<a href="#" class="image"><img src="/static/detail/images/pic02.jpg" alt="" /></a>
+										<div class="inner">
+											<h4>Terraformed a small moon</h4>
+											<p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer adipiscing ornare amet.</p>
+										</div>
+									</article>
+									<article>
+										<a href="#" class="image"><img src="/static/detail/images/pic03.jpg" alt="" /></a>
+										<div class="inner">
+											<h4>Snapped dark matter in the wild</h4>
+											<p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer adipiscing ornare amet.</p>
+										</div>
+									</article>
+								</div>
+							</div>
+						</section>
+						
+					<!-- Four -->
+						<section id="four" style="border-top: solid 6px #4acaa8;">
+							<div class="container" style="padding: 6em 0 4em 0;">
+								<h3>Modify information</h3>
+								<p>温馨提示:个人用户名不能修改.您的个人信息可在此处修改,您的权限可更改用户邮箱、用户性别、联系地址、用户密码、个性签名以及个人简介。</p>
+								<form method="post" action="/modify/">
+									<div class="row uniform">
+										<div class="6u 12u(3)"><input type="text" name="email" id="email" placeholder="邮箱" /></div>
+										<div class="6u 12u(3)"><input type="text" name="password" id="password" placeholder="密码" /></div>
+										<div class="6u 12u(3)"><input type="text" name="sex" id="sex" placeholder="性别" /></div>
+										<div class="6u 12u(3)"><input type="text" name="add" id="add" placeholder="联系地址" /></div>
+										
+									</div>
+									<div class="row uniform">
+										<div class="12u"><input type="text" name="sign" id="sign" placeholder="个性签名" /></div>
+									</div>
+									<div class="row uniform">
+										<div class="12u"><textarea name="message" id="message" placeholder="个人简介" rows="6"></textarea></div>
+									</div>
+									<div class="row uniform">
+										<div class="12u">
+											<ul class="actions">
+												<li><input type="button" class="special" value="Modify" onclick="javascript:modify();" /></li>
+												<li><input type="reset" value="Reset Form" /></li>
+											</ul>
+										</div>
+									</div>
+								</form>
+							</div>
+						</section>
+		<script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
+	<script>window.jQuery || document.write('<script src="/static/js/jquery-1.11.0.min.js"><\/script>')</script>
+<script src="/static/js/zeroModal.js"></script>
+	<script type="text/javascript">
+		    function _error(data,status) {
+		        zeroModal.error(data+'请选择数据进行操作!'+status);
+		    }
+
+		    function _success(data,status) {
+		        zeroModal.success(data+'操作成功!'+status);
+		    }
+		    function _success() {
+		        zeroModal.success('操作成功!');
+		    }
+	</script>			
+					<!-- Five -->
+<script type="text/javascript">
+function modify()
+{
+
+	var email=$("#email").val();
+	var password=$("#password").val();
+	var sex=$("#sex").val();
+	var add=$("#add").val();
+	var sign=$("#sign").val();
+	var message=$("#message").val();
+	//alert(email);
+	 $.ajax({
+		 url:"/modify/",
+		 async:true,
+		 cache:false,
+		 type:"POST",
+		 dataType: "text",
+		 data:{ email:email,sex:sex,add:add,password:password,sign:sign,message:message},
+		 success:function(data,status){
+			 //alert("您的信息已修改！\n" + data + "\n状态: " +status);
+			 //_success();
+			 _success(data,status);
+	 		},
+		 error:function(){
+			 _error();
+		 }
+	 });
+}
+</script>		
+
+
+
+			
+						<section id="five" style="border-top: solid 6px #4acaa8;">
+							<div class="container" style="padding: 6em 0 4em 0;">
+								<h3>Warning Message</h3>
+
+								<section>
+								
+									<h5>Elements</h5>
+									<p>
+									<blockqoute>凡该公司用户信息属私人机密，所有权属于福州自由人网络科技有限公司每位用户所有。其所涉及的内容和资料完全自愿公开使用。每位用户使用期间须谨慎，并遵守以下的规定：</br></blockqoute>
+									
+										（1）若任一用户不希望享有本平台提供所述服务，请按平台联系方式尽快将个人意愿传达；</br>
+										（2）在没有取得本平台任一用户的书面同意前，不得将他人信息全部和/或部分地予以复制、传递给他人、影印、泄露或散布给他人；</br>
+										（3）每位用户应以合法态度尊重和保护本平台所提供的每位用户资料，如若侵犯，本公司必将以法律武器严惩不尊重他人意愿者。</br>
+										（注：福州市自由人网络科技有限公司为每一位用户提供个人隐私意愿保障。）</br>
+									
+									</p>
+									<h5>Current Position</h5>
+									<pre><code><div id="map"></div></code></pre>
+								</section>
+				
+							</div>
+				</section>
+
+			<!-- Footer -->
+				<section id="footer">
+					<div class="container">
+						<ul class="copyright">
+							<li>&copy;  All rights reserved.</li><li>CREATE BY <a href="http://xinhao1024.blog.163.com/" target="blank"> XinHao</li>
+						</ul>
+					</div>
+				</section>
+			
+		</div>
+	</body>
+</html>

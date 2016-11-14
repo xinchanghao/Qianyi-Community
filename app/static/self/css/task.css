@@ -1,0 +1,75 @@
+.banner-top{
+	position:absolute;
+	width:100%;
+	height:20em;
+	z-index:99;
+	padding: 35px 30px;
+	background: rgba(17, 17, 17, 0.56);
+}
+
+.bnr-right {
+    width: 45%;
+    float: left;
+    padding:10px 0px 10px 0px;
+}
+.bnr-left {
+    width: 88%;
+    float: left;
+    padding:10px 0px 10px 0px;
+}
+.bnr-right input[type="text"] {
+    width: 95%;
+    color: #fff;
+    outline: none;
+	font-family: 'Microsoft YaHei';
+	font-size: 14px;
+    padding: 10px 10px;
+    border: none;
+    -webkit-appearance: none;
+    background-color: rgba(17,17,17,0.5);
+}
+.bnr-right >select {
+    width: 95%;
+	color: #9e9e9e;
+	outline: none;
+	font-family: 'Microsoft YaHei';
+	font-size: 14px;
+	padding: 10px 10px;
+	border: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    -ms-appearance: none;
+    background-color: rgba(17,17,17,0.5);
+    font-weight: 400;
+    cursor: pointer;
+}
+.bnr-left >textarea {
+    width: 100%;
+    height:50px;
+	color: #9e9e9e;
+	outline: none;
+	font-family: 'Microsoft YaHei';
+	font-size: 14px;
+	padding: 10px 10px;
+	border: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    -ms-appearance: none;
+    background-color: rgba(17,17,17,0.5);
+    font-weight: 400;
+    cursor: pointer;
+}
+.bnr-btn>form>.book{
+	  background-color: rgba(165,165,165,0.5);
+	  border: #fff solid 2px;
+	  color:#fff;  
+	  width:200px;
+}
+.bnr-btn>form>.book:hover{
+	  background-color: rgba(74,202,168,0.5);
+	  border:none;
+	  color:#fff; 
+}
+
