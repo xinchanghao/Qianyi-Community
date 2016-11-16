@@ -31,6 +31,6 @@ urlpatterns = [
     url(r'^detail/$', app_views.detail,name='detail'), 
     url(r'^detail_other/(\S+)/(\S+)/(\S+)/$', app_views.detail_other,name='detail_other'), 
     url(r'^modify/$', app_views.modify,name='modify'), 
-
+    url(r'^book/$', app_views.book,name='book'), 
 
 ]

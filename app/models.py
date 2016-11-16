@@ -66,7 +66,13 @@ from django.utils.encoding import python_2_unicode_compatible
 #姝ゅ鍏煎python2
 class Task(models.Model):
 	user_name =models.CharField(u'濮撳悕',max_length=256)
-	user_task= models.CharField(u'任务',max_length=256,null=True,default="尚未更新...")
+	task_start= models.CharField(u'任务',max_length=256,null=True,default="尚未更新...")
+	task_end= models.CharField(u'任务',max_length=256,null=True,default="尚未更新...")
+	task_num= models.CharField(u'任务',max_length=256,null=True,default="尚未更新...")
+	task_type= models.CharField(u'任务',max_length=256,null=True,default="尚未更新...")
+	task_msg= models.CharField(u'任务',max_length=256,null=True,default="尚未更新...")
+
+
 
 
 	#update_time =models.DateTimeField(u'鏇存柊鏃堕棿',auto_now=True,null=True)

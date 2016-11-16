@@ -66,10 +66,14 @@
 	  border: #fff solid 2px;
 	  color:#fff;  
 	  width:200px;
+	  margin-top:25px;
 }
 .bnr-btn>form>.book:hover{
 	  background-color: rgba(74,202,168,0.5);
 	  border:none;
 	  color:#fff; 
 }
-
+.date {
+    background: url(../images/date-icon.png) no-repeat 95.5% 45% #fff;
+    cursor: pointer;
+}

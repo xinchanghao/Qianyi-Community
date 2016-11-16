@@ -142,14 +142,14 @@ var x = document.getElementById("allmap");
 						<section id="two">
 							<div class="container">
 								<h3>What I Think</h3>
-								<p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum integer lorem ipsum dolor sit amet.</p>
+								<p>{{task.task_msg}}.</p>
 								<ul class="feature-icons">
-									<li class="fa-code">Write all the code</li>
-									<li class="fa-cubes">Stack small boxes</li>
-									<li class="fa-book">Read books and stuff</li>
-									<li class="fa-coffee">Drink much coffee</li>
-									<li class="fa-bolt">Lightning bolt</li>
-									<li class="fa-users">Shadow clone technique</li>
+									<li class="fa-calendar"><b>开始日期：</b>{{task.task_start}}</li>
+									<li class="fa-calendar"><b>结束日期：</b>{{task.task_end}}</li>
+									<li class="fa-users"><b>参与人数：</b>{{task.task_num}}</li>
+									<li class="fa-coffee"><b>结束日期：</b>{{task.task_type}}</li>
+									<li class="fa-list"><b>结束日期：</b>{{task.task_type}}</li>
+									<li class="fa-book"><b>结束日期：</b>Shadow</li>
 								</ul>
 								<h5>Position</h5>
 									<pre><code><div id="map"></div></code></pre>

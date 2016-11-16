@@ -4,6 +4,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.template import RequestContext
 from django import forms
 from app.models import User
+from app.models import Task
 from django.views.decorators.csrf import csrf_exempt
 from django.core.urlresolvers import reverse
 from django.core.mail import send_mail  	
@@ -132,19 +133,21 @@ def detail(request):
 		user=request.session['username']
 		try:
 			users= User.objects.get(user_name= user)
-			return render(request,'app/self.html',{'users':users})   #render 是渲染模板；
+			task = Task.objects.get(user_name= user)
+			return render(request,'app/self.html',{'users':users,'task':task})   #render 是渲染模板；
 		except BaseException:
 			return render(request,'app/error.html',{"error":'The page you are looking for is not here or moved.'}) 
 	else:
-		return render(request,'app/login.html',{'form':uf})   #render 是渲染模板；
+		return error(request);   #render 是渲染模板；
 
 #用户主页
 def detail_other(request,user,longi,lati):
 	if request.session.get('has_login',False):
 		try:
 			users= User.objects.get(user_name= user)
+			task = Task.objects.get(user_name= user)
 # 			return HttpResponse(users.user_sign)
-			return render(request,'app/detail.html',{'users':users})
+			return render(request,'app/detail.html',{'users':users,'task':task})
 		except BaseException:
 			return render(request,'app/error.html',{"error":'The page you are looking for is not here or moved.'}) 
 	else:
@@ -174,4 +177,24 @@ def modify(request):
 		return HttpResponse(username)
 	return render(request,'app/error.html',{"error":'数据库操作失败！'})
 	
+#发布任务
+def book(request):
+	if  request.is_ajax():
+		username=request.session['username']
+		datestart = request.POST['datestart']
+		dateend = request.POST['dateend']
+		maxnum = request.POST['maxnum']
+		actype = request.POST['actype']
+		taskmsg = request.POST['taskmsg']
+		task = Task.objects.filter(user_name = username)
+		user = User.objects.filter(user_name = username)
+		if task:
+				Task.objects.filter(user_name= username).update(task_start=datestart,task_end=dateend,task_num=maxnum,task_type=actype,task_msg=taskmsg)
+				User.objects.filter(user_name= username).update(user_descripe=taskmsg)
+				return HttpResponse(username)
+		else:
+			Task.objects.create(user_name= username,task_start=datestart,task_end=dateend,task_num=maxnum,task_type=actype,task_msg=taskmsg)
+			User.objects.filter(user_name= username).update(user_descripe=taskmsg)
+			return HttpResponse(username)
+	return render(request,'app/error.html',{"error":'数据库操作失败！'})
 	
